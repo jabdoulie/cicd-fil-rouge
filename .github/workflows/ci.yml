@@ -53,6 +53,11 @@ jobs:
   ci-ok:
     name: CI OK
     needs: [lint, test]
+    if: always()
     runs-on: ubuntu-latest
     steps:
-      - run: echo "All checks passed"
+      - run: |
+          if [ "${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}" == "true" ]; then
+            echo "Une ou plusieurs vérifications ont échoué."
+            exit 1
+          fi
