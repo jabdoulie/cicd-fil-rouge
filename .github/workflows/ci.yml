@@ -48,3 +48,18 @@ jobs:
         with:
           name: test-report-${{ matrix.python-version }}
           path: report.xml
+
+  ci-ok:
+    name: CI OK
+    needs: [lint, test]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require lint and test to succeed
+        run: |
+          echo "lint=${{ needs.lint.result }}"
+          echo "test=${{ needs.test.result }}"
+          if [ "${{ needs.lint.result }}" != "success" ] || [ "${{ needs.test.result }}" != "success" ]; then
+            echo "lint or test did not succeed"
+            exit 1
+          fi
