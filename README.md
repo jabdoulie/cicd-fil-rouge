@@ -1,5 +1,7 @@
 # TaskFlow — dépôt fil rouge CI/CD
 
+[![CI](https://github.com/jabdoulie/cicd-fil-rouge/actions/workflows/ci.yml/badge.svg)](https://github.com/jabdoulie/cicd-fil-rouge/actions/workflows/ci.yml)
+
 TaskFlow est une petite API de gestion de tâches écrite en Python avec FastAPI.
 C'est le projet fil rouge du module CI/CD (Mastère DevOps M1, Sup de Vinci) :
 pendant trois jours, vous allez construire autour d'elle un pipeline complet
@@ -65,3 +67,12 @@ docker run --rm -p 8000:8000 taskflow
 Nécissite une approbation
 Pas de force push 
 Pas de suppresion
+
+## Pipeline CI
+
+**Performances d'installation (pip) :**
+- Durée sans cache : ~20 à 30 secondes.
+- Durée avec cache : ~2 à 5 secondes.
+
+**Rôle du job `CI OK` :**
+Ce job agit comme un point de contrôle final unique. Il ne s'exécute que si tous les jobs précédents (lint et tests sur la matrice de versions) ont réussi. Ainsi, au lieu de configurer GitHub pour exiger la réussite de chaque job de la matrice individuellement, nous définissons uniquement `CI OK` comme check obligatoire, ce qui est beaucoup plus simple et robuste.
