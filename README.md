@@ -66,4 +66,5 @@ Nécissite une approbation
 Pas de force push 
 Pas de suppresion
 
+*Capture d'écran correspondante aux consignes 2 (Branche feat/ci) et 3 (PR, checks verts, approbation) :*
 ![Capture d'écran prouvant les consignes (PR feat/ci, checks verts, approbation)](./capture.png)
